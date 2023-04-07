@@ -1,0 +1,8 @@
+{% package query %}
+{% import "strings" %}
+
+{% func InsertData(schemaName, tableName, returning string, columns []string, rows int) %}
+    INSERT INTO {%s schemaName %}.{%s tableName %} ({%s strings.Join(columns, ",") %})
+    VALUES {%s renderValues(len(columns), rows) %} ON CONFLICT DO NOTHING
+    {% if returning != "" %} RETURNING {%s returning%}{% endif %}
+{% endfunc %}

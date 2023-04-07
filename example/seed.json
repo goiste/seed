@@ -1,0 +1,72 @@
+[
+  {
+    "schema": "schema_test",
+    "env_vars": [
+      {
+        "key": "test.user",
+        "value": "seed"
+      }
+    ],
+    "tables": [
+      {
+        "name": "main",
+        "primary_key": "id",
+        "columns": [
+          "full_name",
+          "username",
+          "email",
+          "?hired_at",
+          "is_active"
+        ],
+        "values": [
+          {
+            "username": "admin",
+            "email": "admin@admin",
+            "is_active": true
+          },
+          {
+            "$repeat": 27,
+            "full_name": "$name:,fio",
+            "username": "$one_of:user1,user2,user3",
+            "email": "$email",
+            "hired_at": "$datetime:2012-12-12T12:00:00,2022-12-12T12:00:00",
+            "is_active": "$bool:75"
+          }
+        ]
+      },
+      {
+        "name": "second",
+        "primary_key": "id",
+        "foreign_keys": [
+          {
+            "column": "user_id",
+            "ref_table": "main"
+          }
+        ],
+        "columns": [
+          "user_id",
+          "uuid",
+          "title",
+          "?40description",
+          "address",
+          "?75phone",
+          "amount",
+          "values"
+        ],
+        "values": [
+          {
+            "$repeat": 42,
+            "user_id": "$int:1,27",
+            "uuid": "$uuid",
+            "title": "$sentence:2,5",
+            "description": "$paragraph:2,4",
+            "address": "$address",
+            "phone": "$phone",
+            "amount": "$int:111,222",
+            "values": "$[,5]float:3,1,3"
+          }
+        ]
+      }
+    ]
+  }
+]
