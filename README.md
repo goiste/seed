@@ -8,7 +8,7 @@ import seed "github.com/goiste/seed/lib"
 ```
 ### Использование в качестве консольной утилиты
 ```shell
-go install github.com/goiste/seed
+go install github.com/goiste/seed@latest
 ```
 
 ### Описание входных данных
