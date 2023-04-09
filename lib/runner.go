@@ -136,6 +136,10 @@ func (r *Runner) runTable(ctx context.Context, table Table, schemaName string, s
 			}
 		}
 
+		if len(valuesToWrite) == 0 {
+			continue
+		}
+
 		{
 			tableValues, err := r.fillForeignKeys(valuesToWrite, table.ForeignKeys, tablesPrimaryKeys)
 			if err != nil {
