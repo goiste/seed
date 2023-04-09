@@ -22,7 +22,7 @@ go install github.com/goiste/seed@latest
 ```yaml
 - schema: schema_test # схема БД
   env_vars: # сессионные переменные
-    - key: mod.user
+    - key: test.user
       value: 'seed'
   tables:
     - name: main # имя таблицы
